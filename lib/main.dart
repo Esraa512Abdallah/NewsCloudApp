@@ -9,20 +9,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Models/app_local.dart';
 import 'Views/home_view.dart';
 
-
 void main() async {
- LangViewModel Translate = LangViewModel();
+  LangViewModel Translate = LangViewModel();
 
-
-  /////////////////////////////////////////
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sharedPreferences.setString("lang", "en");
-  Locale locale = Locale( sharedPreferences.getString("lang")!," ");
-
+  Locale locale = Locale(sharedPreferences.getString("lang")!, " ");
 
   runApp(MyApp(locale));
 }
+
 class MyApp extends StatefulWidget {
   final Locale? locale;
 
@@ -32,48 +29,42 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-
 class _MyAppState extends State<MyApp> {
-
   LangViewModel Translate = Get.put(LangViewModel());
 
   @override
   Widget build(BuildContext context) {
-    return
-      GetMaterialApp(
-        localizationsDelegates: const [
-          AppLocal.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales:  const[
-          Locale('ar', ''),
-          Locale('en', ''),
-          Locale('fr', ''),
-        ],
-        locale: widget.locale,
-
-        localeResolutionCallback: (currentLocale,
-            supportedLocales) {
-          if (currentLocale != null) {
-            for (Locale locale in supportedLocales) {
-              if (currentLocale.languageCode == locale.languageCode) {
-                return currentLocale;
-              }
+    return GetMaterialApp(
+      localizationsDelegates: const [
+        AppLocal.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ar', ''),
+        Locale('en', ''),
+        Locale('fr', ''),
+      ],
+      locale: widget.locale,
+      localeResolutionCallback: (currentLocale, supportedLocales) {
+        if (currentLocale != null) {
+          for (Locale locale in supportedLocales) {
+            if (currentLocale.languageCode == locale.languageCode) {
+              return currentLocale;
             }
           }
-          return supportedLocales.first;
-        },
-        debugShowCheckedModeBanner: false,
-        home:AnimatedSplashScreen(
-          splashIconSize: 250,
-            duration: 3000,
-            splash: Image.asset("assets/splash/splash.jpg"),
-            nextScreen: HomeView(),
-            splashTransition: SplashTransition.fadeTransition,
-            backgroundColor: Colors.black,
-        ),
-
-      );
+        }
+        return supportedLocales.first;
+      },
+      debugShowCheckedModeBanner: false,
+      home: AnimatedSplashScreen(
+        splashIconSize: 250,
+        duration: 3000,
+        splash: Image.asset("assets/splash/splash.jpg"),
+        nextScreen: HomeView(),
+        splashTransition: SplashTransition.fadeTransition,
+        backgroundColor: Colors.black,
+      ),
+    );
   }
 }

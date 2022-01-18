@@ -39,10 +39,6 @@ class NewsViewModel extends GetxController{
 
         Dt .Articles!.forEach((el) async{
           trans1 = await  translator.translate(el.title!,from: 'ar', to: 'en'  );
-       //   trans2 = await  translator.translate(el.description!,from: 'en', to: 'ar'  );
-      //  print("trans1/////////////:${trans1}");
-       // print("*********************************************");
-         // print("trans2//////////////:${trans2}");
         });
 
         return ArticlesList ;

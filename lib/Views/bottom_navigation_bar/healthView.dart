@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloudnewsapp/Models/app_local.dart';
 import 'package:cloudnewsapp/ViewModels/news_view_model.dart';
 import 'package:cloudnewsapp/Views/bottom_navigation_bar/widget/customText.dart';
@@ -50,7 +51,15 @@ class HealthView extends GetWidget<NewsViewModel>{
                             child:Column(
 
                               children: [
-                                Image.network(data.Articles![index!].imageurl.toString(),fit: BoxFit.fill,),
+                                CachedNetworkImage(
+                                  placeholder: (context, url) =>
+                                  const CircularProgressIndicator(
+                                      color: GreyColor1
+                                  ),
+                                  imageUrl: data.Articles![index!].imageurl.toString(),
+                                  fit: BoxFit.fill,
+                                ),
+
                                 SizedBox(
                                   height: SizeConfig.defaultSize!*1.2,
                                 ),
