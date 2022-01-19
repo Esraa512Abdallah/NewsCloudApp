@@ -10,8 +10,8 @@ import 'Models/app_local.dart';
 import 'Views/home_view.dart';
 
 void main() async {
-  LangViewModel Translate = LangViewModel();
 
+  LangViewModel Translate = LangViewModel();
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sharedPreferences.setString("lang", "en");
