@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
   final String ApiKey = 'b870e143651b4baeb3779733311ee712';
   String  Selectedlang = "English";
 
-///////////Colors/////////////////////////
 
 const Color BlackColor = Colors.black ;
 const Color GreyColor1 = Colors.grey;

@@ -1,22 +1,19 @@
-import 'package:cloudnewsapp/Models/app_local.dart';
-import 'package:cloudnewsapp/ViewModels/lang_view_model.dart';
-import 'package:cloudnewsapp/ViewModels/news_view_model.dart';
-import 'package:cloudnewsapp/Views/bottom_navigation_bar/widget/customText.dart';
-import 'package:cloudnewsapp/helper/sizedConfig.dart';
-import 'package:cloudnewsapp/models/news_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+
+import 'package:cloudnewsapp/helper/constans.dart';
+import 'package:cloudnewsapp/helper/sized_config.dart';
+import 'package:cloudnewsapp/view_model/news_view_model.dart';
+import 'package:cloudnewsapp/view/bottom_navigation_bar/widget/custom_text.dart';
+import 'package:cloudnewsapp/model/app_local.dart';
+import 'package:cloudnewsapp/model/news_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
-import 'package:translator/translator.dart';
-import '../../helper/constans.dart';
 
-class BusinessView extends GetWidget<NewsViewModel> {
+class SportView extends GetWidget<NewsViewModel> {
   NewsViewModel NewsController = Get.put(NewsViewModel());
-  LangViewModel LangController = Get.put(LangViewModel());
-
-  final translator = GoogleTranslator();
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +21,10 @@ class BusinessView extends GetWidget<NewsViewModel> {
 
     // TODO: implement build
     return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       child: FutureBuilder(
-        future: NewsController.FetchApiData('business'),
+        future: NewsController.FetchApiData("sports"),
         builder: (context, AsyncSnapshot? snapshot) {
           NewsModel? data = snapshot!.data;
 
@@ -34,8 +33,8 @@ class BusinessView extends GetWidget<NewsViewModel> {
               itemCount: data!.Articles!.length,
               itemBuilder: (context, int? index) {
                 return Container(
-                  width: double.infinity,
                   color: BlackColor,
+                  width: double.infinity,
                   child: Column(
                     children: [
                       Card(
@@ -53,23 +52,24 @@ class BusinessView extends GetWidget<NewsViewModel> {
                               CachedNetworkImage(
                                 placeholder: (context, url) =>
                                     const CircularProgressIndicator(
-                                        color: GreyColor1
-                                    ),
-                                imageUrl: data.Articles![index!].imageurl.toString(),
+                                  color: GreyColor1,
+                                ),
+                                imageUrl:
+                                    data.Articles![index!].imageurl.toString(),
                                 fit: BoxFit.fill,
                               ),
-
                               SizedBox(
                                 height: SizeConfig.defaultSize! * 1.2,
                               ),
-                              CustomText(
+                              Text(
                                 data.Articles![index].title.toString(),
                                 textDirection: (country == 'eg')
                                     ? TextDirection.rtl
                                     : TextDirection.ltr,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: BlackColor,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "RobotoCondensed"),
                               ),
                               Container(
                                 padding: EdgeInsets.only(
@@ -103,7 +103,7 @@ class BusinessView extends GetWidget<NewsViewModel> {
                     color: GreyColor1,
                   ),
                   SizedBox(
-                    height: SizeConfig.defaultSize! * 2.5,
+                    height: 20,
                   ),
                   CustomText(
                     AppLocal.of(context)

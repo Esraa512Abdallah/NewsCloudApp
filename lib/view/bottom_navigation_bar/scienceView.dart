@@ -1,16 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloudnewsapp/Models/app_local.dart';
-import 'package:cloudnewsapp/ViewModels/news_view_model.dart';
-import 'package:cloudnewsapp/Views/bottom_navigation_bar/widget/customText.dart';
-import 'package:cloudnewsapp/helper/sizedConfig.dart';
-import 'package:cloudnewsapp/models/news_model.dart';
+
+import 'package:cloudnewsapp/helper/constans.dart';
+import 'package:cloudnewsapp/helper/sized_config.dart';
+import 'package:cloudnewsapp/view_model/news_view_model.dart';
+import 'package:cloudnewsapp/view/bottom_navigation_bar/widget/custom_text.dart';
+import 'package:cloudnewsapp/model/app_local.dart';
+import 'package:cloudnewsapp/model/news_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:get/get.dart';
 
-import '../../helper/constans.dart';
+class ScienceView extends GetWidget<NewsViewModel>{
 
-class HealthView extends GetWidget<NewsViewModel>{
   NewsViewModel NewsController = Get.put(NewsViewModel());
 
 
@@ -20,10 +23,10 @@ class HealthView extends GetWidget<NewsViewModel>{
     SizeConfig().init(context);
 
     // TODO: implement build
-    return Container(
+    return  Container(
 
         child: FutureBuilder(
-          future: NewsController.FetchApiData('health'),
+          future: NewsController.FetchApiData('science'),
           builder: (context , AsyncSnapshot? snapshot ){
             NewsModel? data = snapshot!.data;
 
@@ -35,7 +38,7 @@ class HealthView extends GetWidget<NewsViewModel>{
 
                   return Container(
                     width: double.infinity,
-                    color:BlackColor,
+                    color: BlackColor,
                     child: Column(
                       children: [
                         Card(
@@ -59,18 +62,14 @@ class HealthView extends GetWidget<NewsViewModel>{
                                   imageUrl: data.Articles![index!].imageurl.toString(),
                                   fit: BoxFit.fill,
                                 ),
-
                                 SizedBox(
                                   height: SizeConfig.defaultSize!*1.2,
                                 ),
 
-                                CustomText(
-                                  data.Articles![index].title.toString(),
-                                  textDirection: (country == 'eg') ?TextDirection.rtl : TextDirection.ltr,
-                                  fontSize: 20 ,fontWeight: FontWeight.bold ,
-                                     color: BlackColor,
-                                      fontFamily:"RobotoCondensed",
-                                ),
+                                CustomText(data.Articles![index].title.toString(),
+                                    textDirection: (country == 'eg') ?TextDirection.rtl : TextDirection.ltr,
+                                   fontSize: 20 ,fontWeight: FontWeight.bold ,
+                                      fontFamily:"RobotoCondensed"),
 
                                 Container(
                                   padding: EdgeInsets.only(

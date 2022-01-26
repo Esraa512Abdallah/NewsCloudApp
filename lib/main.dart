@@ -1,17 +1,21 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:cloudnewsapp/ViewModels/lang_view_model.dart';
+
+import 'package:cloudnewsapp/view_model/lang_view_model.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
-import 'Models/app_local.dart';
-import 'Views/home_view.dart';
+
+import 'view/home_view.dart';
+
+import 'model/app_local.dart';
 
 void main() async {
-
-  LangViewModel Translate = LangViewModel();
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   sharedPreferences.setString("lang", "en");

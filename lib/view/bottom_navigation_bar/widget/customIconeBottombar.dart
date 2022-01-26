@@ -6,6 +6,7 @@ class CustomIcone extends StatelessWidget {
   final IconData icon;
 
   CustomIcone({this.color = Colors.orange, required this.icon, this.size = 25});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

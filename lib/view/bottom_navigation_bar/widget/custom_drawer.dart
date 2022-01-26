@@ -1,25 +1,24 @@
-import 'package:cloudnewsapp/Models/app_local.dart';
-import 'package:cloudnewsapp/Models/news_model.dart';
-import 'package:cloudnewsapp/ViewModels/lang_view_model.dart';
-import 'package:cloudnewsapp/ViewModels/news_view_model.dart';
-import 'package:cloudnewsapp/helper/sizedConfig.dart';
+import 'package:cloudnewsapp/helper/sized_config.dart';
+import 'package:cloudnewsapp/helper/constans.dart';
+import 'package:cloudnewsapp/model/app_local.dart';
+import 'package:cloudnewsapp/view_model/lang_view_model.dart';
+import 'package:cloudnewsapp/view_model/news_view_model.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
-import '../../../helper/constans.dart';
-import 'customText.dart';
 
-class CustomDrawer extends StatefulWidget{
+
+class CustomDrawer extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
     return StateCustomDrawer();
   }
-
 }
-class StateCustomDrawer extends State<CustomDrawer>{
 
+class StateCustomDrawer extends State<CustomDrawer> {
   NewsViewModel NewsController = Get.put(NewsViewModel());
 
   bool _isButtonPressed1 = false;
@@ -34,69 +33,73 @@ class StateCustomDrawer extends State<CustomDrawer>{
     SizeConfig().init(context);
     // TODO: implement build
     return Drawer(
-
-
-
-      child:Container(
+      child: Container(
         color: Colors.black,
         child: ListView(
-
           children: [
             Container(
               // color: Colors.black,
-              child:DrawerHeader(
-                  decoration: BoxDecoration(color: Colors.black,),
-                  child: (country == 'eg') ?Image.asset("assets/images/Egypt2.png",width:double.infinity,height: double.infinity,)
-                      :(country == 'us') ?Image.asset("assets/images/Us2.jpg",width:double.infinity,height: double.infinity):
-                  Image.asset("assets/images/France2.gif",width:double.infinity,height: double.infinity,)
-              ),),
-
+              child: DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  child: (country == 'eg')
+                      ? Image.asset(
+                          "assets/images/Egypt2.png",
+                          width: double.infinity,
+                          height: double.infinity,
+                        )
+                      : (country == 'us')
+                          ? Image.asset("assets/images/Us2.jpg",
+                              width: double.infinity, height: double.infinity)
+                          : Image.asset(
+                              "assets/images/France2.gif",
+                              width: double.infinity,
+                              height: double.infinity,
+                            )),
+            ),
             Divider(
-              height: SizeConfig.defaultSize!*2.5 ,
+              height: SizeConfig.defaultSize! * 2.5,
               color: Colors.grey,
             ),
             Container(
-
-              color:Colors.black,
-
+              color: Colors.black,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Container(
                     padding: EdgeInsets.only(
-                      left: SizeConfig.defaultSize!*2.5 ,
-                      right: SizeConfig.defaultSize!*2.5,
-                      top: SizeConfig.defaultSize!*2 ,
+                      left: SizeConfig.defaultSize! * 2.5,
+                      right: SizeConfig.defaultSize! * 2.5,
+                      top: SizeConfig.defaultSize! * 2,
                     ),
-
                     child: Text(
                       AppLocal.of(context).getTranslated("Countries news"),
-
-                      style: TextStyle(color: Colors.white, fontSize: 20,fontWeight: FontWeight.w600,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
                       ),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-
                   Container(
-
                       padding: EdgeInsets.only(
-                          top: SizeConfig.defaultSize!*1.7,
-                          bottom: SizeConfig.defaultSize!*1.7,
-                          right: SizeConfig.defaultSize!*2.5,
-                          left: SizeConfig.defaultSize!*2.5),
+                          top: SizeConfig.defaultSize! * 1.7,
+                          bottom: SizeConfig.defaultSize! * 1.7,
+                          right: SizeConfig.defaultSize! * 2.5,
+                          left: SizeConfig.defaultSize! * 2.5),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-
                           FlatButton(
-                            height:SizeConfig.defaultSize!*4.5 ,
-
-                            color: _isButtonPressed1 ? Colors.grey : Colors.black54 ,
-                            shape:RoundedRectangleBorder(
+                            height: SizeConfig.defaultSize! * 4.5,
+                            color: _isButtonPressed1
+                                ? Colors.grey
+                                : Colors.black54,
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.grey,width: 1.5),
-
+                              side: BorderSide(color: Colors.grey, width: 1.5),
                             ),
                             child: Row(
                               children: [
@@ -105,41 +108,42 @@ class StateCustomDrawer extends State<CustomDrawer>{
                                   height: 30,
                                   width: 50,
                                 ),
-                                SizedBox(width: SizeConfig.defaultSize!*1.7,),
+                                SizedBox(
+                                  width: SizeConfig.defaultSize! * 1.7,
+                                ),
                                 Text(
                                   AppLocal.of(context).getTranslated("Egypt"),
-                                  style: TextStyle(color: Colors.white ,
-                                    fontSize: 16 ,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               ],
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               setState(() {
-                                country = 'eg' ;
-                                _isButtonPressed1=!_isButtonPressed1;
+                                country = 'eg';
+                                _isButtonPressed1 = !_isButtonPressed1;
                                 _isButtonPressed2 = false;
                                 _isButtonPressed3 = false;
                               });
-
                             },
                           ),
 
-
-
-                          ////////////////////////////////////////////////////////////
-                          SizedBox(height: 15,),
+                          SizedBox(
+                            height: 15,
+                          ),
 
                           FlatButton(
-                            height:SizeConfig.defaultSize!*4.5 ,
-                            color: _isButtonPressed2 ?  Colors.grey:Colors.black54 ,
-                            shape:RoundedRectangleBorder(
+                            height: SizeConfig.defaultSize! * 4.5,
+                            color: _isButtonPressed2
+                                ? Colors.grey
+                                : Colors.black54,
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.grey,width: 1.5),
-
-
+                              side: BorderSide(color: Colors.grey, width: 1.5),
                             ),
                             child: Row(
                               children: [
@@ -148,10 +152,13 @@ class StateCustomDrawer extends State<CustomDrawer>{
                                   height: 30,
                                   width: 50,
                                 ),
-                                SizedBox(width: 10,),
-                                Text(AppLocal.of(context).getTranslated("USA"),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  AppLocal.of(context).getTranslated("USA"),
                                   style: TextStyle(
-                                    color: Colors.white ,
+                                    color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -159,25 +166,27 @@ class StateCustomDrawer extends State<CustomDrawer>{
                                 ),
                               ],
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               setState(() {
                                 _isButtonPressed2 = !_isButtonPressed2;
                                 _isButtonPressed1 = false;
                                 _isButtonPressed3 = false;
-                                country = 'us' ;});
-
+                                country = 'us';
+                              });
                             },
                           ),
-                          SizedBox(height: 15,),
+                          SizedBox(
+                            height: 15,
+                          ),
 
                           FlatButton(
-                            height:SizeConfig.defaultSize!*4.5 ,
-                            color: _isButtonPressed3 ?Colors.grey: Colors.black54 ,
-                            shape:RoundedRectangleBorder(
+                            height: SizeConfig.defaultSize! * 4.5,
+                            color: _isButtonPressed3
+                                ? Colors.grey
+                                : Colors.black54,
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.grey,width: 1.5),
-
-
+                              side: BorderSide(color: Colors.grey, width: 1.5),
                             ),
                             child: Row(
                               children: [
@@ -186,46 +195,43 @@ class StateCustomDrawer extends State<CustomDrawer>{
                                   height: 30,
                                   width: 50,
                                 ),
-                                SizedBox(width: 10,),
+                                SizedBox(
+                                  width: 10,
+                                ),
                                 Text(
-                                  AppLocal.of(context).getTranslated("French Republic"),
+                                  AppLocal.of(context)
+                                      .getTranslated("French Republic"),
                                   style: TextStyle(
-                                    color: Colors.white ,
+                                    color: Colors.white,
                                     fontSize: 16,
                                     fontWeight: FontWeight.w600,
                                   ),
-                                  overflow: TextOverflow.ellipsis,),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
                               ],
                             ),
-                            onPressed: (){
+                            onPressed: () {
                               setState(() {
-                                country = 'fr' ;
-                                _isButtonPressed3 = ! _isButtonPressed3;
+                                country = 'fr';
+                                _isButtonPressed3 = !_isButtonPressed3;
                                 _isButtonPressed2 = false;
                                 _isButtonPressed1 = false;
                               });
-
                             },
-
                           ),
                         ],
-                      )
-
-
-                  ),
-
+                      )),
                   Divider(
-                    height: SizeConfig.defaultSize!*3 ,
+                    height: SizeConfig.defaultSize! * 3,
                     color: Colors.grey,
                   ),
-
                   Container(
                     padding: EdgeInsets.only(
-                      left: SizeConfig.defaultSize!*2.5 ,
-                      right: SizeConfig.defaultSize!*2.5,
-                      top: SizeConfig.defaultSize!*1.7 ,
+                      left: SizeConfig.defaultSize! * 2.5,
+                      right: SizeConfig.defaultSize! * 2.5,
+                      top: SizeConfig.defaultSize! * 1.7,
                     ),
-                    child:Text(
+                    child: Text(
                       AppLocal.of(context).getTranslated("Change language"),
                       style: TextStyle(
                         color: Colors.white,
@@ -235,30 +241,32 @@ class StateCustomDrawer extends State<CustomDrawer>{
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-
                   Container(
-
                       padding: EdgeInsets.only(
-                          top: SizeConfig.defaultSize!*1.7,
-                          bottom: SizeConfig.defaultSize!*1.7,
-                          right: SizeConfig.defaultSize!*2.5,
-                          left: SizeConfig.defaultSize!*2.5),
+                          top: SizeConfig.defaultSize! * 1.7,
+                          bottom: SizeConfig.defaultSize! * 1.7,
+                          right: SizeConfig.defaultSize! * 2.5,
+                          left: SizeConfig.defaultSize! * 2.5),
                       child: Column(
                         children: [
-
                           GetBuilder<LangViewModel>(
-                              init:LangViewModel() ,
-                              builder:( controller ) {
+                              init: LangViewModel(),
+                              builder: (controller) {
                                 return FlatButton(
-                                  height:SizeConfig.defaultSize!*4.5 ,
-                                  color: _isButtonPressed4 ? Colors.grey : Colors.black54,
-                                  shape:RoundedRectangleBorder(
+                                  height: SizeConfig.defaultSize! * 4.5,
+                                  color: _isButtonPressed4
+                                      ? Colors.grey
+                                      : Colors.black54,
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.grey,width: 1.5),
+                                    side: BorderSide(
+                                        color: Colors.grey, width: 1.5),
                                   ),
                                   child: Row(
                                     children: [
-                                      Text(AppLocal.of(context).getTranslated("Arabic"),
+                                      Text(
+                                        AppLocal.of(context)
+                                            .getTranslated("Arabic"),
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 16,
@@ -270,117 +278,105 @@ class StateCustomDrawer extends State<CustomDrawer>{
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      _isButtonPressed4 =!_isButtonPressed4;
-                                      _isButtonPressed5=false;
-                                      _isButtonPressed6=false;
+                                      _isButtonPressed4 = !_isButtonPressed4;
+                                      _isButtonPressed5 = false;
+                                      _isButtonPressed6 = false;
                                     });
                                     controller.changLang("ar");
                                     Get.updateLocale(Locale('ar', ''));
                                   },
-
                                 );
-                              }
-
+                              }),
+                          SizedBox(
+                            height: 15,
                           ),
-                          SizedBox(height: 15,),
                           GetBuilder<LangViewModel>(
-                              init:LangViewModel() ,
-                              builder:( controller ) {
+                              init: LangViewModel(),
+                              builder: (controller) {
                                 return FlatButton(
-                                  height:SizeConfig.defaultSize!*4.5 ,
-                                  color: _isButtonPressed5 ? Colors.grey : Colors.black54,
-                                  shape:RoundedRectangleBorder(
+                                  height: SizeConfig.defaultSize! * 4.5,
+                                  color: _isButtonPressed5
+                                      ? Colors.grey
+                                      : Colors.black54,
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.grey,width: 1.5),
-
+                                    side: BorderSide(
+                                        color: Colors.grey, width: 1.5),
                                   ),
                                   child: Row(
                                     children: [
-                                      Text(AppLocal.of(context).getTranslated("English"),
+                                      Text(
+                                        AppLocal.of(context)
+                                            .getTranslated("English"),
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 16 ,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w600,
                                         ),
-                                        overflow: TextOverflow.ellipsis,),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                     ],
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      _isButtonPressed5 =!_isButtonPressed5;
-                                      _isButtonPressed4=false;
-                                      _isButtonPressed6=false;
-
-
+                                      _isButtonPressed5 = !_isButtonPressed5;
+                                      _isButtonPressed4 = false;
+                                      _isButtonPressed6 = false;
                                     });
                                     controller.changLang("en");
                                     Get.updateLocale(Locale('en', ''));
                                   },
                                 );
-                              }
-
+                              }),
+                          SizedBox(
+                            height: 15,
                           ),
-
-                          SizedBox(height: 15,),
                           GetBuilder<LangViewModel>(
-                              init:LangViewModel() ,
-                              builder:( controller ) {
+                              init: LangViewModel(),
+                              builder: (controller) {
                                 return FlatButton(
-                                  height:SizeConfig.defaultSize!*4.5 ,
-                                  color: _isButtonPressed6 ? Colors.grey : Colors.black54,
-                                  shape:RoundedRectangleBorder(
+                                  height: SizeConfig.defaultSize! * 4.5,
+                                  color: _isButtonPressed6
+                                      ? Colors.grey
+                                      : Colors.black54,
+                                  shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Colors.grey,width: 1.5),
-
+                                    side: BorderSide(
+                                        color: Colors.grey, width: 1.5),
                                   ),
                                   child: Row(
                                     children: [
-                                      Text(AppLocal.of(context).getTranslated("French"),
+                                      Text(
+                                        AppLocal.of(context)
+                                            .getTranslated("French"),
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 16 ,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w600,
                                         ),
-                                        overflow: TextOverflow.ellipsis,),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                     ],
                                   ),
                                   onPressed: () {
                                     setState(() {
-                                      _isButtonPressed6 =!_isButtonPressed6;
-                                      _isButtonPressed4=false;
-                                      _isButtonPressed5=false;
-
-
+                                      _isButtonPressed6 = !_isButtonPressed6;
+                                      _isButtonPressed4 = false;
+                                      _isButtonPressed5 = false;
                                     });
                                     controller.changLang("fr");
                                     Get.updateLocale(Locale('fr', ''));
                                   },
                                 );
-                              }
-
-                          ),
+                              }),
                         ],
-                      )
-
-
-                  ),
-                 /* Container(
-                    height: SizeConfig.defaultSize!*5,
-                    color: Colors.black,
-                  ),*/
-
+                      )),
                 ],
               ),
-
-
-
             ),
-
           ],
         ),
       ),
-
     );
   }
-
 }
